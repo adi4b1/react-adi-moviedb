@@ -13,7 +13,7 @@ import PersonSearchData from './tmdb/usecontext/PersonSearchData';
 import IndvidualPersonDetails from './tmdb/IndvidualPersonDetails';
 import IndPersonData from './tmdb/usecontext/IndPersonData';
 import MovieVideos from './tmdb/MovieVideos';
-import NotFound from './tmdb/Notfound';
+import NotFound from './tmdb/NotFound';
 // import {apiGlobalData} from '/tmdb/Home'
 // console.log('from home.jsx',apiGlobalData[0].results);
 
