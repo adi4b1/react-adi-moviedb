@@ -10,8 +10,8 @@ const options = {
 
 export const fetchVideos=createAsyncThunk(
     'videos/fetchVideos',
-    async(id)=>{
-        const response=await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,options)
+    async(convertId)=>{
+        const response=await fetch(`https://api.themoviedb.org/3/movie/${convertId}/videos?language=en-US`,options)
         // console.log(response.json());
         
         return response.json()

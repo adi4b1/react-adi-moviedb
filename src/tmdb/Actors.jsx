@@ -1,7 +1,8 @@
 import React, { useEffect, useReducer } from 'react'
 import { poster_parent_url } from './MovieDetails';
-import user from '../assets/user.png';
-
+import userimagenotfound from '../assets/user.png';
+import NotFound from './NotFound';
+import { Link } from 'react-router-dom';
 const Actors = ({actordetails}) => {
 // console.log(actordetails);
 
@@ -47,7 +48,7 @@ const Actors = ({actordetails}) => {
 
       const conData=await fetchDataActors.json()
       dispatch({type:"data",payload:conData})
-      // console.log('dfdfs',conData);
+      console.log('dfdfs',conData);
       
       }catch(error){
         dispatch({type:'error',payload:"error fetch details"})
@@ -73,7 +74,7 @@ const Actors = ({actordetails}) => {
         
       }
 <label style={{padding:'5px 85px',color:'white'}}>Cast & crew</label>
-      {!actorDetailsList.load&&actorDetailsList?(
+      {!actorDetailsList.load&&actorDetailsList.data?(
         
         <div className='mainActorBodyForScroll'>
           
@@ -82,13 +83,14 @@ const Actors = ({actordetails}) => {
               return(
                 item?(
                   <div key={item.name} className='actorInfo'>
-                    
+                    <Link to={`/person/${item.id}/${item.name}`} key={item.id}>
                     <img  className="actor_image"src={
                       item.profile_path?
-                      `${poster_parent_url}${item.profile_path}`:`${item.id}`
+                      `${poster_parent_url}${item.profile_path}`:`${userimagenotfound}`
                     }  alt={item.id} />
                     <h6 style={{color:"white",padding:1}}>{item.name.substr(0,25)}</h6>
                     <span style={{color:"white",padding:0}}>{item.known_for_department} | {item.character}</span>
+                    </Link>
                   </div>
                 ):'not found'
                  
@@ -102,13 +104,15 @@ const Actors = ({actordetails}) => {
               return(
                   item?(
                     <div className='actorInfo'>
+                       <Link to={`/person/${item.id}/${item.name}`} key={item.id}>
                     <img key={item.id} className="actor_image"src={
-                      `${poster_parent_url}${item.profile_path}`
+                      item.profile_path?`${poster_parent_url}${item.profile_path}`:`${userimagenotfound}`
                     } alt="" />
                     <h6 style={{color:"white",padding:5}}>{item.name.substr(0,25)}</h6>
                     <span style={{color:"white",padding:5}}>{item.job} | {item.name}</span>
+                    </Link>
                   </div>
-                  ):'not found'
+                  ):<NotFound/>
                   
                
               )
@@ -118,7 +122,7 @@ const Actors = ({actordetails}) => {
 
 
         
-      ):'no found'}
+      ):<NotFound/>}
     </div>
   )
 }

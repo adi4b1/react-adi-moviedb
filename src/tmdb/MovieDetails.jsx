@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Actors from "./Actors";
-
+import userimagenotfound from '../assets/user.png'
 import { fetchVideos } from "../redux/videoSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -30,14 +30,14 @@ const MovieDetails = () => {
     initialState
   );
   const { id } = useParams(); // Get the dynamic id from the URL
-  // console.log(typeof id);
+  // console.log('id',id);
   const convertId = Number(id);
   // console.log(typeof convertId);
   const dis = useDispatch();
 
   const { videos, status, error } = useSelector((state) => state.videos);
 
-  console.log(videos);
+  // console.log('videos',videos);
 
   const options = {
     method: "GET",
@@ -129,7 +129,9 @@ const MovieDetails = () => {
         ) : (
           <div className="displayMovieDetails">
             <div className="imagePoster">
-              <img src={`${poster_parent_url}${backgroundposter}`} alt="" />
+              <img src={
+                MovieDetailsData.data.backdrop_path?
+                `${poster_parent_url}${backgroundposter}`:userimagenotfound} alt="" />
             </div>
             <div className="secondDivDetails">
               <h1

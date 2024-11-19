@@ -5,7 +5,7 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Nav from './tmdb/Nav'
 import {Routes, Route } from 'react-router-dom';
-
+// import { changemode } from "../redux/darkmodeSlice";
 import MovieDetails from './tmdb/MovieDetails'
 import PopularPersons from './tmdb/PopularPersons';
 import UserProvider from './tmdb/UserProvider';
@@ -14,19 +14,21 @@ import IndvidualPersonDetails from './tmdb/IndvidualPersonDetails';
 import IndPersonData from './tmdb/usecontext/IndPersonData';
 import MovieVideos from './tmdb/MovieVideos';
 import NotFound from './tmdb/NotFound';
+import { useSelector } from 'react-redux';
 // import {apiGlobalData} from '/tmdb/Home'
 // console.log('from home.jsx',apiGlobalData[0].results);
 
 function App() {
   
+  const lighttheme=useSelector((state)=>state.darkmode.value)
 
 
   return (
-    <div>
+    <div className={`${lighttheme&&'darkModeData'}`}>
       <UserProvider>
         <PersonSearchData>
           <IndPersonData>
-      <Nav/>
+          <Nav/>
       
       {/* <Home/> */}
       

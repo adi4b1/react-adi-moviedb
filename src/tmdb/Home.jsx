@@ -7,13 +7,13 @@ import NetworkError from './NetworkError'
 export const apiGlobalData=[]
 import { useDispatch } from 'react-redux'
 
-import { addUsers} from '../redux/userSlice'
-import { changemode } from '../redux/darkmodeSlice'
+// import { addUsers} from '../redux/userSlice'
+// import { changemode } from '../redux/darkmodeSlice'
 import { useSelector } from 'react-redux'
 const Home = () => {
     
-    const[username,setUsername]=useState("")
-    const[displayBox,setdisplayBox]=useState(false)
+    // const[username,setUsername]=useState("")
+    // const[displayBox,setdisplayBox]=useState(false)
     const initialState={
         load:true,
         data:null,
@@ -37,10 +37,10 @@ const Home = () => {
     
     
 
-    const newUsers=useDispatch()
+    // const newUsers=useDispatch()
     
-    const newSub=useSelector((state)=>state.newSubscribers.users)
-   const newsubcount=useSelector((state)=>state.newSubscribers.users.length)
+    // const newSub=useSelector((state)=>state.newSubscribers.users)
+//    const newsubcount=useSelector((state)=>state.newSubscribers.users.length)
    //for darkmode
    
    const getdarkmodeData=useSelector((state)=>state.darkmode.value)
@@ -84,32 +84,32 @@ useEffect(()=>{
 const radioHandler=(val)=>{
     settrendRadio(val)
 }
-const usernameHandler=(e)=>{
+// const usernameHandler=(e)=>{
    
-     setUsername(e.target.value)
-    //  console.log(e.target.value);
+//      setUsername(e.target.value)
+//     //  console.log(e.target.value);
      
     
- }
+//  }
 
-const subscriberHandler=(e)=>{
-    e.preventDefault()
-    // console.log(username);
-    if(username.length>0){
-        newUsers(addUsers(username))
-    }
+// const subscriberHandler=(e)=>{
+//     e.preventDefault()
+//     // console.log(username);
+//     if(username.length>0){
+//         newUsers(addUsers(username))
+//     }
     
-    setUsername("")
+//     setUsername("")
     
 
     
-}
+// }
 
-const getUsernamebox=()=>{
-    setdisplayBox(true)
-}
+// const getUsernamebox=()=>{
+//     setdisplayBox(true)
+// }
   return (
-    <div className={getdarkmodeData&&'darkModeData'}>
+    <div className={getdarkmodeData?'darkModeData':undefined}>
     
       {moviesData.load&&<Loader/>}
         {
@@ -131,16 +131,16 @@ const getUsernamebox=()=>{
                     <br />
                     
                     <div>
-                        <p>Subscribers :{newsubcount}</p>
+                        {/* <p>Subscribers :{newsubcount}</p>
                         <button onClick={getUsernamebox}>Subscribe</button>
                         {displayBox&&<div>
                             <form onSubmit={subscriberHandler}>
                                 <input type="text" className='addUsernameInput' name="username" value={username} onChange={usernameHandler}/>
                                 <button type='submit'>Subscribe</button>
                             </form>
-                        </div>}
+                        </div>} */}
 
-                        <div>
+                        {/* <div>
                             {
                                 newSub.map((item,index)=>{
                                     return(
@@ -152,10 +152,10 @@ const getUsernamebox=()=>{
                                     )
                                 })
                             }
-                        </div>
+                        </div> */}
                     </div>
                 </div>
-                <div>
+                <div className='forcard'>
                 {
                     
                     !moviesData.load && moviesData.data&&(
@@ -166,8 +166,8 @@ const getUsernamebox=()=>{
                             {moviesData.data.map((item)=>{
                                 return(
                                     
-                                    <div key={item.id}>
-                                        <ImageCard props={item}/>
+                                    <div key={item.id} className='forIndPersdata'>
+                                        <ImageCard props={item} daylight={getdarkmodeData}/>
                                     </div>
                                 )
                             })

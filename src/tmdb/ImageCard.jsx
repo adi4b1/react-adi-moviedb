@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 // import MovieDetails from './MovieDetails';
 
-const ImageCard = ({props}) => {
+const ImageCard = ({props,daylight}) => {
     const{title,original_title,original_name,id}=props || {}
 
 
@@ -30,12 +30,12 @@ const ImageCard = ({props}) => {
        
             <div className='forImageDisplay'>
                   
-                <Link to={`/movie/${id}/${encodeURIComponent(movieName)}`}>
+                <Link to={`/movie/${id}/${encodeURIComponent(movieName)}`} className="navlinks">
                 <div className="cardImage">
                     <img src={`${baseImageUrl}${props.poster_path}`} alt="pic"  />
                 </div>
                 <div className="extraInfo">
-                    <p className='cardTitle'>{original_title?.substr(0,12)||original_name.substr(0,8)}</p>
+                    <p className={`${daylight===true?'cardTitle':'cardTitleBlack'}`}>{original_title?.substr(0,12)||original_name.substr(0,8)}</p>
                 </div>
                 </Link>
             </div>
